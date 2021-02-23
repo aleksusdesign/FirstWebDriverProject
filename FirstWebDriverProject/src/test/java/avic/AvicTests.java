@@ -2,7 +2,6 @@ package avic;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,14 +11,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import static org.openqa.selenium.By.xpath;
-import static org.openqa.selenium.Keys.ENTER;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -86,7 +79,7 @@ public class AvicTests {
         driver.findElement(xpath("//input[contains(@class,'max')]")).clear();//очищаем max price
         driver.findElement(xpath("//input[contains(@class,'max')]")).sendKeys("43000");//вставляем max price
         WebDriverWait wait = new WebDriverWait(driver, 100);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'open-f')]//a")));//ждем пока не появится кнопка показать
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[contains(@class, 'open-f')]//a")));//ждем пока не появится кнопка показать
         driver.findElement(xpath("//div[contains(@class, 'open-f')]//a")).click();//жмем на кнопку показать
         new WebDriverWait(driver, 30).until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete")); //ждем пока не загрузится страница
